@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if posts %}
+{% for post in posts %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="/posts/{{post_id}}">{{ post.author.username }}</a>
+          <small class="text-muted">{{ post.date_posted.strftime('%d-%m-%Y') }}</small>
+        </div>
+        <h2><a class="article-title" href="/post/{{ posts_id }}">{{ post.title }}</a></h2>
+        <p class="article-content">{{ post.content }}</p>
+      </div>
+    </article>
+{% endfor %}
+{% else %}
+<p>No articles have been uploaded yet.</p>
+<p>Like to share a post? <a href="{{url_for('login')}}">Log In</a> <br>
+  or <a href="{{ url_for ('register') }}">Register here</a>
+</p>
+{% endif %}
+{% endblock %}
